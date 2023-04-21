@@ -1,0 +1,207 @@
+#include<stdio.h>
+#define but 4
+#define but2 3
+#define but3 2
+#define but4 1
+#define led 13
+#define led2 12
+#define led3 11
+#define led4 10
+#define led5 9
+#define led6 8
+#define led7 7
+#define led8 6
+#define led9 5
+
+#define OutPin(pin) pinMode(pin, OUTPUT)
+#define InPin(pin) pinMode(pin, INPUT)
+#define Lectura(pin) digitalRead(pin)
+#define WDigital(pin, b) digitalWrite(pin, b)
+int leer;
+ 
+ 
+void setup() {
+
+  Serial.begin(9600);
+  InPin(but);
+  InPin(but2);
+  InPin(but3);
+  InPin(but4);
+  OutPin(led);
+  OutPin(led2);
+  OutPin(led2);
+  OutPin(led3);
+  OutPin(led4);
+  OutPin(led5);
+  OutPin(led6);
+  OutPin(led7);
+  OutPin(led8);
+  OutPin(led9);
+
+  
+}
+  
+void loop() {
+  leer = Lectura(but);
+  for (int t = 1 ;t < 5;t++){
+  if (leer == 0)
+  {
+    WDigital(led,HIGH);
+    WDigital(led2,HIGH);
+    WDigital(led3,HIGH);
+    WDigital(led4,HIGH);
+    WDigital(led5,HIGH);
+    WDigital(led6,HIGH);
+    WDigital(led7,HIGH);
+    WDigital(led8,HIGH);
+    WDigital(led9,HIGH);
+
+   delay (500);
+  } 
+   if (leer == 0){
+    WDigital(led,LOW);
+    WDigital(led2,LOW);
+    WDigital(led3,LOW);
+    WDigital(led4,LOW);
+    WDigital(led5,LOW);
+    WDigital(led6,LOW);
+    WDigital(led7,LOW);
+    WDigital(led8,LOW);
+    WDigital(led9,LOW);
+      
+     delay (500);
+   }      
+  }
+  
+ leer = Lectura(but2);
+  for (int t = 1 ;t < 5;t++){
+  if (leer == 0)
+  {
+    WDigital(led,HIGH);
+    delay (100);
+    WDigital(led,LOW);
+    delay (100);
+    WDigital(led2,HIGH);
+    delay (100);
+    WDigital(led2,LOW);
+    delay (100);
+    WDigital(led3,HIGH);
+    delay (100);
+    WDigital(led3,LOW);
+    delay (100);
+    WDigital(led4,HIGH);
+    delay (100);
+    WDigital(led4,LOW);
+    delay(100);
+    WDigital(led5,HIGH);
+    delay (100);
+    WDigital(led5,LOW);
+    delay (100);
+    WDigital(led6,HIGH);
+    delay (100);
+    WDigital(led6,LOW);
+    delay (100);
+    WDigital(led7,HIGH);
+    delay(100);
+    WDigital(led7,LOW);
+    delay(100);
+    WDigital(led8,HIGH);
+    delay (100);
+    WDigital(led8,LOW);
+    delay (100);
+    WDigital(led9,HIGH);
+    delay (100);
+    WDigital(led9,LOW);
+    delay (100);
+
+   }      
+  }
+   
+ leer = Lectura(but3);
+  for (int t = 1 ;t < 5;t++){
+  if (leer == 0)
+  {
+    WDigital(led9,HIGH);
+    delay (100);
+    WDigital(led9,LOW);
+    delay (100);
+    WDigital(led8,HIGH);
+    delay (100);
+    WDigital(led8,LOW);
+    delay (100);
+    WDigital(led7,HIGH);
+    delay (100);
+    WDigital(led7,LOW);
+    delay (100);
+    WDigital(led6,HIGH);
+    delay (100);
+    WDigital(led6,LOW);
+    delay(100);
+    WDigital(led5,HIGH);
+    delay (100);
+    WDigital(led5,LOW);
+    delay (100);
+    WDigital(led4,HIGH);
+    delay (100);
+    WDigital(led4,LOW);
+    delay (100);
+    WDigital(led3,HIGH);
+    delay(100);
+    WDigital(led3,LOW);
+    delay(100);
+    WDigital(led2,HIGH);
+    delay (100);
+    WDigital(led2,LOW);
+    delay (100);
+    WDigital(led,HIGH);
+    delay (100);
+    WDigital(led,LOW);
+    delay (100);
+   }      
+  } 
+ leer = Lectura(but4);
+  for (int t = 1 ;t < 5;t++){
+  if (leer == 0)
+  {
+    WDigital(led,HIGH);
+    delay (500);
+    WDigital(led,LOW);
+    delay (500);
+    WDigital(led9,HIGH);
+    delay (500);
+    WDigital(led9,LOW);
+    delay (500);
+    WDigital(led2,HIGH);
+    delay (500);
+    WDigital(led2,LOW);
+    delay (500);
+    WDigital(led8,HIGH);
+    delay (500);
+    WDigital(led8,LOW);
+    delay(500);
+    WDigital(led3,HIGH);
+    delay (500);
+    WDigital(led3,LOW);
+    delay (500);
+    WDigital(led7,HIGH);
+    delay (500);
+    WDigital(led7,LOW);
+    delay (500);
+    WDigital(led4,HIGH);
+    delay(500);
+    WDigital(led4,LOW);
+    delay(500);
+    WDigital(led6,HIGH);
+    delay (500);
+    WDigital(led6,LOW);
+    delay (500);
+    WDigital(led5,HIGH);
+    delay (500);
+    WDigital(led5,LOW);
+    delay (500);
+
+   }      
+  } 
+  
+}
+  
