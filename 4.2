@@ -1,0 +1,99 @@
+#include <Servo.h>
+#include<stdio.h>
+#define condicion 12 
+#define condicion1 13
+#define condicion2 11
+#define condicion3 10
+#define condicion4 9
+#define servo 4
+#define buz 7
+#define OutPin(pin) pinMode(pin, OUTPUT)
+#define InPin(pin) pinMode(pin, INPUT)
+#define Lectura(pin) digitalRead(pin)
+#define WDigital(pin, b) digitalWrite(pin, b)
+int leer;
+ 
+Servo servowil;
+ 
+void setup() {
+
+  Serial.begin(9600);
+  servowil.attach(4);
+  InPin(condicion);
+  InPin(condicion1);
+  InPin(condicion2);
+  InPin(condicion3);
+  InPin(condicion4);
+  OutPin(servo);
+  OutPin (buz);
+}
+  
+  
+
+ 
+void loop() {
+  leer = Lectura(condicion);
+  if (leer == 0){
+  servowil.write(0);}
+  leer = Lectura(condicion);
+  if (leer == 0)
+  {WDigital (buz,HIGH);
+   delay (100);
+  }
+  else{ 
+    WDigital(buz,LOW);
+  }
+  
+
+  leer = Lectura(condicion1);
+  if (leer == 0){
+  servowil.write(45);}
+  if (leer == 0)
+  {WDigital (buz,HIGH);
+   delay (100);
+  }
+  else{ 
+    WDigital(buz,LOW);
+  }
+  
+  
+  
+  
+  leer = Lectura(condicion2);
+  if (leer == 0){
+  servowil.write(90);}
+  if (leer == 0)
+  {WDigital (buz,HIGH);
+   delay (100);
+  }
+  else{ 
+    WDigital(buz,LOW);
+  }
+  
+  
+  
+  
+  leer = Lectura(condicion3);
+  if (leer == 0){
+   servowil.write(135);}
+  if (leer == 0)
+  {WDigital (buz,HIGH);
+   delay (100);
+  }
+  else{ 
+    WDigital(buz,LOW);
+  }
+  
+  
+  leer = Lectura(condicion4);
+  if (leer == 0){
+    servowil.write(180);}
+  if (leer == 0)
+  {WDigital (buz,HIGH);
+   delay (100);
+  }
+  else{ 
+    WDigital(buz,LOW);
+  }
+}
+
