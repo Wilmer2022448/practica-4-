@@ -1,0 +1,29 @@
+//wilmer Steven Garcia Muy
+//2022448
+#define rele 7
+#define OutPin(pin) pinMode(pin, OUTPUT)
+#define InPin(pin) pinMode(pin, INPUT)
+#define Lectura(pin) digitalRead(pin)
+#define Leer(pin) analogRead(pin)
+#define WDigital(pin, b) digitalWrite(pin, b)
+#define serial(pin) Serial.println (pin)
+int valor;
+const int fot = A5;
+void setup()
+{ 
+  Serial.begin (9600);
+  OutPin (rele);
+}
+void loop()
+{
+  valor = Leer(fot);
+  if (valor < 50){
+  
+    WDigital(rele,HIGH);
+  }
+  else {WDigital(rele ,LOW);}
+ 
+  serial (fot);
+  delay (1000);
+  
+}
