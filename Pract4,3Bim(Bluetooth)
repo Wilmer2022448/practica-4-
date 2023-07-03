@@ -1,0 +1,123 @@
+
+//poyecto del ceratosaurio
+#include <Servo.h>
+#include <SoftwareSerial.h>
+#include <Adafruit_NeoPixel.h>
+#define PIN 13
+#define NUM_LEDS 7//Variables 
+int controlPin = 13;
+Adafruit_NeoPixel jewel = Adafruit_NeoPixel (6,controlPin, NEO_GRB + NEO_KHZ800);
+int led1 = 2;
+int led2 = 3;
+int led3 = 4;
+int led4 = 5;
+int led5 = 6;
+char valor;  //Variable tipo caracter
+String modo;
+#define Outpin(pin) pinMode(pin, OUTPUT)
+#define Wdigital(pin, b) digitalWrite(pin, b)
+
+Servo servowil; //inicializo el servo
+
+void setup() {
+
+  Outpin(led1);
+  Outpin(led2);
+  Outpin(led3);
+  Outpin(led4);
+  Outpin(led5);
+  servowil.attach(7); //Pin PWM 6 del Arduino para el servo
+  servowil.write(90);  //Inicia el servo en una posición de 90 grado
+  Serial.begin(9600);
+  jewel.begin();
+
+}
+
+void loop() {
+
+  if (Serial.available())  //Si el puerto (Bluetooth) está disponible
+  {
+    valor = Serial.read();  //Lee el dato entrante via Bluetooth
+
+    if (valor == 'A')   //Si el dato que llega es una A
+    {
+      Wdigital(led1, HIGH);  //Enciende el LED 1
+    }
+    if (valor == 'B')   //Si el dato que llega es una B
+    {
+      Wdigital(led1, LOW);   //apaga led 1
+    }
+    if (valor == 'C')   //Si el dato que llega es una C
+    {
+      Wdigital(led2, HIGH);  //Enciende led 2
+    }
+    if (valor == 'D')   //Si el dato que llega es una D
+    {
+       Wdigital(led2, LOW);   //Apaga el led2
+    }
+    if (valor == 'E')   //Si el dato es una E
+    {
+      Wdigital(led3, HIGH);  //Enciende el led3
+    }
+    if (valor == 'F')   //Si el dato que llega es una F
+    {
+       Wdigital(led3, LOW);   //apaga el led3
+    }
+    if (valor == 'G')   //Si el dato es una E
+    {
+      Wdigital(led4, HIGH);  //Enciende el Led4
+    }
+    if (valor == 'H')   //Si el dato que llega es una D
+    {
+       Wdigital(led4, LOW);   //Apaga el Led4
+    }
+    if (valor == 'I')   //Si el dato es una I
+    {
+      Wdigital(led5, HIGH);  //Enciende el led5
+    }
+    if (valor == 'J')   //Si el dato que llega es una J
+    {
+       Wdigital(led5, LOW);   //Apaga el led5
+    }
+    if (valor == 'S')   //Si el dato que llega es una S
+    {
+       servo ();   //se va al servo
+    }
+    if (valor == 'N')   //Si el dato que llega es una N
+    {
+       Neo ();   //se va al Neo
+    }
+  }
+}
+void servo()
+{
+  delay(30);
+  while (Serial.available())
+  {
+    char c = Serial.read();   //lee el dato y lo almacena en una variable char
+    modo += c;    //Crea una cadena String con los datos entrantes
+  }
+  if (modo.length() > 0)  //si la cadena tipo String tiene un largo mayor a cero entonces
+  {
+    servowil.write(modo.toInt());   //manda al servo el dato en forma de entero
+    modo = "";    //limpia la variable
+  }
+}
+
+
+
+void Neo()
+{
+    for(int i = 0 ; i < 7 ; i++)
+
+{
+
+  jewel.setPixelColor(0,jewel.Color( 56, 226, 209 ));
+  jewel.show();
+  delay (1000);
+  jewel.clear();
+  jewel.show();
+  delay (1000);
+}
+}
+  
