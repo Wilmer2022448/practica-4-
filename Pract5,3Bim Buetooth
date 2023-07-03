@@ -1,0 +1,254 @@
+//proyecto corintiosaurus
+#include "LedControl.h" 	
+#include <Ticker.h>
+LedControl MATRIX = LedControl(11,13,10,1);	// crea objeto
+int gasvalor ;
+int tonePin = 2;
+#define demora 220		// lo que duraran los digitos en la matriz led
+#define Aread(pin) analogRead(pin)
+#define Wdigital(pin, b) digitalWrite(pin, b)
+#define OutPin(pin) pinMode(pin, OUTPUT)
+#define InPin(pin) pinMode(pin, INPUT)
+void Cambio(void); //Funcion sin retorno
+Ticker Interrupcion(Cambio, 1000);  //Cada 1 segundos, realiza una interrupcion
+//configuracciones de los digitos de la matriz Led
+byte caracter[8] = {		//Arreglo para mostrar flama
+0x10, 0x38, 0x28, 0x44, 0xd6, 0xd6, 0x54, 0x38
+};
+byte caracter_2[8] = { //Arreglo para mostrar en blanco
+0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+};
+byte caracter_3[8] = { //Arreglo para mostrar la letra W
+0xc3, 0xc3, 0xdb, 0xdb, 0xdb, 0xff, 0xe7, 0xc3
+};
+byte caracter_4[8] = { //Arreglo para mostrar la letra I
+0x18, 0x18, 0x0, 0x18, 0x18, 0x18, 0x18, 0x18
+};
+byte caracter_5[8] = { //Arreglo para mostrar la letra L
+0x30, 0x30, 0x30, 0x30, 0x30, 0x30, 0x3e, 0x3e
+};
+byte caracter_6[8] = { //Arreglo para mostrar la letra M
+0xc3, 0xe7, 0xff, 0xdb, 0xdb, 0xdb, 0xdb, 0xc3
+};
+byte caracter_7[8] = { //Arreglo para mostrar la letra E
+0x3e, 0x3e, 0x30, 0x3e, 0x3e, 0x30, 0x3e, 0x3e
+};
+byte caracter_8[8] = { //Arreglo para mostrar la letra R
+0x7c, 0x66, 0x66, 0x6e, 0x78, 0x6c, 0x66, 0x63
+};
+byte caracter_9[8] = { //Arreglo para mostrar flama
+0x10, 0x38, 0x28, 0x44, 0xd6, 0xd6, 0x54, 0x38
+};
+byte caracter_10[8] = { //Arreglo para mostrar blanco
+0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+};
+byte caracter_11[8] = { //Arreglo para mostrar flama
+0x10, 0x38, 0x28, 0x44, 0xd6, 0xd6, 0x54, 0x38
+};
+byte caracter_12[8] = { //Arreglo para mostrar blanco
+0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0
+};
+// Fin de las configuraciones xddddd
+ void Cambio(void){ //Funcion del evento a realizar con la interrupcion
+   gasvalor = Aread(A0);
+  Serial.println (gasvalor);
+  delay (1000);
+      if (gasvalor >= 350)
+       {
+        Play();
+         mostrar();				
+        delay(600);
+        mostrar_2();
+        delay(300); 
+        mostrar_9();				
+        delay(600);
+        mostrar_10();
+        delay(300); 
+        mostrar_11();				
+        delay(600);
+        mostrar_12();
+        delay(300); 
+        
+ }  
+	   }
+void setup()
+{
+  OutPin(tonePin);
+  InPin (A0);
+  Serial.begin (9600);
+//matriz  
+  MATRIX.shutdown(0,false);			// enciende  matriz
+  MATRIX.setIntensity(0,4);			//  brillo
+  MATRIX.clearDisplay(0);			// blanquea matriz
+  Interrupcion.start();   //Inicializa las interrupciones por software
+  
+}
+
+void loop()
+{
+ Interrupcion.update(); //Actualiza la libreria para poder mantener la interrupcion limpia
+ // funcion for para los digitos de matriz
+for(int a = 0; a < 7; a++){
+         mostrar_3();
+        delay(demora);
+        mostrar_4();
+        delay(demora);
+        mostrar_5();
+        delay(demora);
+        mostrar_6();
+        delay(demora);
+        mostrar_7();
+        delay(demora);
+        mostrar_8();
+        delay(demora);
+     }
+
+}  
+   
+void mostrar(){			// funcion mostrar_1
+  for (int i = 0; i < 8; i++)  		// bucle 8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter[i]);	
+    void Cambio(void); 	// establece fila con valor de array cero en misma posicion
+  }
+}
+void mostrar_2(){
+    for (int i = 0; i < 8; i++)  		// bucle 8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter_2[i]);		// establece fila con valor de array cero en misma posicion
+      void Cambio(void);  
+  }
+}
+void mostrar_3(){
+    for (int i = 0; i < 8; i++)  		// bucle  8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter_3[i]);		// establece fila con valor de array cero en misma posicion
+     void Cambio(void);    
+  }
+}
+void mostrar_4(){
+    for (int i = 0; i < 8; i++)  		// bucle 8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter_4[i]);		// establece fila con valor de array cero en misma posicion
+    void Cambio(void);
+  }
+}
+void mostrar_5(){
+    for (int i = 0; i < 8; i++)  		// bucle  8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter_5[i]);		// establece fila con valor de array cero en misma posicion
+    void Cambio(void);
+  }
+}
+void mostrar_6(){
+    for (int i = 0; i < 8; i++)  		// bucle  8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter_6[i]);		// establece fila con valor de array cero en misma posicion
+    void Cambio(void);
+  }
+}
+void mostrar_7(){
+    for (int i = 0; i < 8; i++)  		// bucle  8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter_7[i]);		// establece fila con valor de array cero en misma posicion
+    void Cambio(void);
+  }
+}
+void mostrar_8(){
+    for (int i = 0; i < 8; i++)  		// bucle 8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter_8[i]);		// establece fila con valor de array cero en misma posicion
+    void Cambio(void);
+  }
+}
+void mostrar_9(){
+    for (int i = 0; i < 8; i++)  		// bucle 8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter_9[i]);		// establece fila con valor de array cero en misma posicion
+    void Cambio(void);
+  }
+}
+void mostrar_10(){
+    for (int i = 0; i < 8; i++)  		// bucle 8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter_10[i]);		// establece fila con valor de array cero en misma posicion
+    void Cambio(void);
+  }
+}
+void mostrar_11(){
+    for (int i = 0; i < 8; i++)  		// bucle 8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter_11[i]);		// establece fila con valor de array cero en misma posicion
+    void Cambio(void);
+  }
+}
+void mostrar_12(){
+    for (int i = 0; i < 8; i++)  		// bucle 8 veces por el array
+  {
+    MATRIX.setRow(0,i,caracter_12[i]);		// establece fila con valor de array cero en misma posicion
+    void Cambio(void);
+  }
+}
+// inicializa la alarma
+void Play (){  
+    tone(tonePin, 523, 42.8571);
+    delay(47.619);
+    delay(95.238);
+    tone(tonePin, 523, 42.8571);
+    delay(47.619);
+    delay(95.238);
+    tone(tonePin, 523, 42.8571);
+    delay(47.619);
+    delay(95.238);
+    tone(tonePin, 349, 42.8571);
+    delay(47.619);
+    delay(23.8095);
+    tone(tonePin, 523, 42.8571);
+    delay(47.619);
+    delay(95.238);
+    tone(tonePin, 523, 42.8571);
+    delay(47.619);
+    delay(95.238);
+    tone(tonePin, 349, 42.8571);
+    delay(47.619);
+    delay(23.8095);
+    tone(tonePin, 523, 42.8571);
+    delay(47.619);
+    delay(23.8095);
+    tone(tonePin, 349, 42.8571);
+    delay(47.619);
+    delay(23.8095);
+    tone(tonePin, 523, 42.8571);
+    delay(47.619);
+    delay(95.238);
+    tone(tonePin, 493, 42.8571);
+    delay(47.619);
+    delay(95.238);
+    tone(tonePin, 493, 42.8571);
+    delay(47.619);
+    delay(95.238);
+    tone(tonePin, 493, 42.8571);
+    delay(47.619);
+    delay(95.238);
+    tone(tonePin, 329, 42.8571);
+    delay(47.619);
+    delay(23.8095);
+    tone(tonePin, 493, 42.8571);
+    delay(47.619);
+    delay(95.238);
+    tone(tonePin, 493, 42.8571);
+    delay(47.619);
+    delay(95.238);
+    tone(tonePin, 329, 42.8571);
+    delay(47.619);
+    delay(23.8095);
+    tone(tonePin, 493, 42.8571);
+    delay(47.619);
+    delay(23.8095);
+    tone(tonePin, 329, 42.8571);
+    delay(47.619);
+    delay(23.8095);
+    tone(tonePin, 493, 42.8571);
+    delay(47.619);
+
+}
